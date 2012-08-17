@@ -1,0 +1,11 @@
+#summary a test page to experiment with embedded images from google site
+
+= Introduction =
+
+Images on google code wikipage 
+
+http://remco-avr.googlecode.com/files/atmega8_schematic.jpg
+
+http://remco-avr.googlecode.com/files/attiny85-5leds-usbasp.jpg
+
+http://remco-avr.googlecode.com/files/AVR-ISP-connectors.png

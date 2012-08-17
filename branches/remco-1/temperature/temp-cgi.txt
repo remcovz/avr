@@ -1,0 +1,94 @@
+#!/usr/bin/rrdcgi
+<HTML>
+<HEAD>
+<TITLE>My Room Temperature at home.</TITLE>
+</HEAD>
+<BODY>
+<H1>My Room Temperature at home.</H1>
+<h3>4 Hour Stats:</h3>
+<p>
+<RRD::GRAPH 
+	../img/temp-4h-graph.png
+	--lazy 
+	--alt-y-grid
+	--start -4h
+	--end now
+	--width=600
+	--height=350
+	--vertical "Celcius"
+	--title="Room Temperature"
+	DEF:temp=/usr/local/rrd/temp.rrd:temp:AVERAGE
+	LINE2:temp#a00000:"Temperature"
+
+>
+</P>
+<h3>1 Day Stats:</h3>
+<p>
+<RRD::GRAPH
+        ../img/temp-1d-graph.png
+        --lazy 
+	--alt-y-grid
+        --start -1d
+        --end now  
+        --width=600 
+        --height=350
+        --vertical "Celcius"
+        --title="Room Temperature"  
+        DEF:temp=/usr/local/rrd/temp.rrd:temp:AVERAGE
+        LINE2:temp#a00000:"Temperature"
+
+>
+</P>
+<h3>1 Week stats:</h3>
+<p>
+<RRD::GRAPH
+        ../img/temp-1w-graph.png
+        --lazy 
+	--alt-y-grid
+        --start -1w 
+        --end now  
+        --width=600 
+        --height=350
+        --vertical "Celcius"
+        --title="Room Temperature" 
+        DEF:temp=/usr/local/rrd/temp.rrd:temp:AVERAGE
+        LINE2:temp#a00000:"Temperature"
+
+>
+</P>
+<p>
+<h3>1 Month stats:</h3>
+<RRD::GRAPH
+        ../img/temp-1m-graph.png
+        --lazy
+	--alt-y-grid
+        --start -1m
+        --end now
+        --width=600
+        --height=350
+        --vertical "Celcius"
+        --title="Room Temperature"
+        DEF:temp=/usr/local/rrd/temp.rrd:temp:AVERAGE
+        LINE2:temp#a00000:"Temperature"
+
+>
+</p>
+<p>
+<h3>1 Year stats:</h3>
+<RRD::GRAPH
+        ../img/temp-1y-graph.png
+        --lazy
+	--alt-y-grid
+        --start -1y
+        --end now   
+        --width=600 
+        --height=350
+        --vertical "Celcius"
+        --title="Room Temperature"
+        DEF:temp=/usr/local/rrd/temp.rrd:temp:AVERAGE
+        LINE2:temp#a00000:"Temperature"
+ 
+>
+</p>
+</BODY>
+</HTML>

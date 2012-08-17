@@ -1,0 +1,16 @@
+#summary Don't disable reset pin
+
+= Introduction =
+
+Do not disable the reset pin on your avr chip if you want to program it again.
+
+= Details =
+
+Yesterday I connected 6 leds to my tiny85 chip, but noticed one pin wasn't working as expected. The PB5 pin, used for reset (RSTDISBL) could be set as output pin by setting the fuses differently. 
+
+As I did, unaware this means you can't reprogram the chip anymore because it needs to reset the chip to be able to program it.
+
+So, do not set the reset bit (fuse) if you ever want to reprogram the chip. It can be used to 'lock' the chip from reading the flash or eeprom.
+
+The fuse bits (including the RSTDISBL one) can be overridden with a High Voltage programmer, like the STK500.
+

@@ -1,0 +1,109 @@
+#summary How to flash your Arduino chip and losing the bootloader.
+
+= Introduction =
+
+This document explains how to flash programs made in the Arduino IDE and flashing it to your Arduino chip (like the ATmega328), and getting rid of the bootloader.
+
+= Why losing the bootloader?? =
+
+The bootloader is required to program the Arduino from the Arduino IDE. It is active a couple of seconds after the microcontroller boots up. After you want to use the chip in a final project that doesn't need the bootloader you can get rid of the delay by flashing your program directly to the microcontroller's flash memory.
+
+== Here is how you do it ==
+
+You do need an AVR programmer of some kind. I used the USBasp. Connecting the programmer to the chip is out of scope for this document.
+
+You need the compiled version of your Arduino sketch. A way to achieve this is to click the Upload button in the IDE, it creates a subdirectory in your sketch folder called 'applet'
+
+I used the 'BlinkWithoutDelay' example sketch for this document. Also, I use OS X so examples are with unix commands, but are easily interchangable with commands in the Windows command prompt window. Windows users can also use WinAVR.
+
+{{{
+$ pwd
+/Users/remco/Documents/Arduino/BlinkWithoutDelay/applet
+$ ls -al
+total 480
+drwxr-xr-x  18 remco  staff    612 21 jan 21:33 .
+drwxr-xr-x   4 remco  staff    136 21 jan 21:33 ..
+-rw-r--r--   1 remco  staff   1941 21 jan 21:33 BlinkWithoutDelay.cpp
+-rw-r--r--   1 remco  staff     13 21 jan 21:33 BlinkWithoutDelay.cpp.eep
+-rwxr-xr-x   1 remco  staff  12290 21 jan 21:33 BlinkWithoutDelay.cpp.elf
+-rw-r--r--   1 remco  staff   2595 21 jan 21:33 BlinkWithoutDelay.cpp.hex
+-rw-r--r--   1 remco  staff   4764 21 jan 21:33 BlinkWithoutDelay.cpp.o
+-rw-r--r--   1 remco  staff  16228 21 jan 21:33 HardwareSerial.cpp.o
+-rw-r--r--   1 remco  staff  25220 21 jan 21:33 Print.cpp.o
+-rw-r--r--   1 remco  staff   5656 21 jan 21:33 WInterrupts.c.o
+-rw-r--r--   1 remco  staff   7052 21 jan 21:33 WMath.cpp.o
+-rw-r--r--   1 remco  staff  93998 21 jan 21:33 core.a
+-rw-r--r--   1 remco  staff   3140 21 jan 21:33 pins_arduino.c.o
+-rw-r--r--   1 remco  staff   8856 21 jan 21:33 wiring.c.o
+-rw-r--r--   1 remco  staff   6592 21 jan 21:33 wiring_analog.c.o
+-rw-r--r--   1 remco  staff   8304 21 jan 21:33 wiring_digital.c.o
+-rw-r--r--   1 remco  staff   6480 21 jan 21:33 wiring_pulse.c.o
+-rw-r--r--   1 remco  staff   4112 21 jan 21:33 wiring_shift.c.o
+$
+}}}
+
+
+Let us check to see if the microcontroller works as intended to be programmed.
+
+{{{
+$ avrdude -c usbasp -P usb -p atmega328p 
+
+avrdude: AVR device initialized and ready to accept instructions
+
+Reading | ################################################## | 100% 0.01s
+
+avrdude: Device signature = 0x1e950f
+
+avrdude: safemode: Fuses OK
+
+avrdude done.  Thank you.
+
+$
+}}}
+
+Seems to work, here we go:
+
+{{{
+
+$ avrdude -c usbasp -P usb -p atmega328p -U flash:w:BlinkWithoutDelay.cpp.hex 
+
+avrdude: AVR device initialized and ready to accept instructions
+
+Reading | ################################################## | 100% 0.01s
+
+avrdude: Device signature = 0x1e950f
+avrdude: NOTE: FLASH memory has been specified, an erase cycle will be performed
+         To disable this feature, specify the -D option.
+avrdude: erasing chip
+avrdude: reading input file "BlinkWithoutDelay.cpp.hex"
+avrdude: input file BlinkWithoutDelay.cpp.hex auto detected as Intel Hex
+avrdude: writing flash (914 bytes):
+
+Writing | ################################################## | 100% 0.66s
+
+
+
+avrdude: 914 bytes of flash written
+avrdude: verifying flash memory against BlinkWithoutDelay.cpp.hex:
+avrdude: load data flash data from input file BlinkWithoutDelay.cpp.hex:
+avrdude: input file BlinkWithoutDelay.cpp.hex auto detected as Intel Hex
+avrdude: input file BlinkWithoutDelay.cpp.hex contains 914 bytes
+avrdude: reading on-chip flash data:
+
+Reading | ################################################## | 100% 0.46s
+
+
+
+avrdude: verifying ...
+avrdude: 914 bytes of flash verified
+
+avrdude: safemode: Fuses OK
+
+avrdude done.  Thank you.
+
+}}}
+
+Now you can use the chip in your own projects and got rid of the bootloader on the microcontroller.
+
+
+ 

@@ -1,0 +1,21 @@
+#summary Bookmarks with avr related websites
+
+= Introduction =
+
+I decided to put my avr related bookmarks on this wikipage for convenience.
+
+
+= Bookmarks =
+
+  * [http://www.adafruit.com/index.php?main_page=index&cPath=16 Adafruit]
+  * [http://www.avrfreaks.net/ avrfreaks.net]
+  * [http://www.fischl.de/usbasp/ fischl.de usbasp programmer homepage]
+  * [http://www.obdev.at/products/crosspack/index.html Crosspack for AVR® Development]
+  * [http://www.uchobby.com/index.php/2007/11/04/arduino-avr-in-system-programmer-isp/ Arduino AVR In System Programmer]
+  * [http://en.wordpress.com/tag/attiny/ Blogs about: Attiny]
+  * [http://github.com/st3fan/electronics Stefan's Electronics Projects]
+  * [http://en.wikipedia.org/wiki/Atmel_AVR Atmel AVR on Wikipedia]
+  * [http://www.sparkfun.com/ Sparkfun]
+  * [http://code.google.com/p/arduino/ Arduino on Google Code]
+
+More to come..

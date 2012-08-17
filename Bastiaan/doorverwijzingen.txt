@@ -1,0 +1,32 @@
+flatcable Arduino:
+
+Plus= 1
+Min = 2
+14 AnodeIC = 3
+12 AnodeIC = 4
+11 AnodeIC = 5
+14 CathodeIC = 6
+12 CathodeIC = 7 
+11 CathodeIC = 8
+
+
+AnodeIC:
+14 = 7 op arduino 
+12 = 5 op arduino
+11 = 6 op arduino
+
+CathodeIC
+14 = 4 op arduino
+12 = 2 op arduino
+11 = 3 op arduino
+eerste ( Linker ledmatrix IC )14 gaat direct naar 4.
+tweede IC 14 wordt aan eerste IC nummer 9 gemaakt.
+12 wordt aan de rest van 12 gemaakt.
+11 wordt aan de rest van 11 gemaakt.
+
+
+
+
+Flatcable ledmatrix:
+2,4,6,8,10,12,14,16 zijn de Cathodes
+1,3,5,7,9,11,13,15 zijn de anodes.
